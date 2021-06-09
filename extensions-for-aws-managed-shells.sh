@@ -143,14 +143,6 @@ curl -sLO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s h
     && chmod +x ./kubectl \
     && sudo mv ./kubectl /usr/local/bin/kubectl
 
-# setup kubecolor 
-LATEST=$(curl -s https://api.github.com/repos/dty1er/kubecolor/releases/latest) \
-&& X86URL=$(echo $LATEST | jq -r '.assets[].browser_download_url' | grep Linux_x86_64.tar.gz) \
-&& X86ARTIFACT=$(echo $LATEST  | jq -r '.assets[].name' | grep Linux_x86_64.tar.gz) \
-&& curl -L -O $X86URL \
-&& tar -zxvf $X86ARTIFACT \
-&& sudo mv kubecolor /usr/local/bin/kubecolor 
-
 # setup the IAM authenticator for aws (for Amazon EKS)
 LATEST=$(curl -s https://api.github.com/repos/kubernetes-sigs/aws-iam-authenticator/releases/latest) \
 && X86URL=$(echo $LATEST | jq -r '.assets[].browser_download_url' | grep linux_amd64) \
@@ -180,14 +172,6 @@ sudo git clone https://github.com/ahmetb/kubectx /usr/local/bin/kubectxkubens
 sudo ln -s /usr/local/bin/kubectxkubens/kubectx /usr/local/bin/kubectx
 sudo ln -s /usr/local/bin/kubectxkubens/kubens /usr/local/bin/kubens
 
-# setup ksonnet 
-LATEST=$(curl -s https://api.github.com/repos/ksonnet/ksonnet/releases/latest) \
-&& X86URL=$(echo $LATEST | jq -r '.assets[].browser_download_url' | grep linux_amd64.tar.gz) \
-&& X86ARTIFACT=$(echo $LATEST  | jq -r '.assets[].name' | grep linux_amd64.tar.gz) \
-&& curl -L -O $X86URL \
-&& tar -zxvf $X86ARTIFACT --strip-components=1 \
-&& sudo mv ks /usr/local/bin/ks 
-
 # setup k9s 
 LATEST=$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest) \
 && X86URL=$(echo $LATEST | jq -r '.assets[].browser_download_url' | grep Linux_x86_64.tar.gz) \
@@ -215,46 +199,6 @@ LATEST=$(curl -s https://api.github.com/repos/sharkdp/bat/releases/latest) \
 && tar -zxvf $X86ARTIFACT \
 && sudo mv $(echo $X86ARTIFACT | sed -r 's/.tar.gz//')/bat /usr/local/bin 
 
-# setup kind
-if [ "$AWS_EXECUTION_ENV" != "CloudShell" ]
-    then
-        LATEST=$(curl -s https://api.github.com/repos/kubernetes-sigs/kind/releases/latest) \
-        && X86URL=$(echo $LATEST | jq -r '.assets[].browser_download_url' | grep kind-linux-amd64) \
-        && X86ARTIFACT=$(echo $LATEST  | jq -r '.assets[].name' | grep kind-linux-amd64) \
-        && curl -Lo ./kind $X86URL\
-        && chmod +x ./kind \
-        && sudo mv ./kind /usr/local/bin/kind 
-    else 
-        echo "skipping because Kind can't work in CloudShell"
-fi
-
-# setup Octant
-if [ "$AWS_EXECUTION_ENV" != "CloudShell" ]
-    then
-        LATEST=$(curl -s https://api.github.com/repos/vmware-tanzu/octant/releases/latest) \
-        && X86URL=$(echo $LATEST | jq -r '.assets[].browser_download_url' | grep Linux-64bit.tar.gz) \
-        && X86ARTIFACT=$(echo $LATEST  | jq -r '.assets[].name' | grep Linux-64bit.tar.gz) \
-        && curl -L -O $X86URL \
-        && tar -zxvf $X86ARTIFACT \
-        && sudo mv $(echo $X86ARTIFACT | sed -r 's/.tar.gz//')/octant /usr/local/bin/octant
-    else 
-        echo "skipping because Octant can't work in CloudShell"
-fi
-
-# setup VS Code server
-if [ "$AWS_EXECUTION_ENV" != "CloudShell" ]
-    then
-        if [ -d "/usr/local/bin/code-server-dir" ]; then sudo rm -Rf /usr/local/bin/code-server-dir; sudo rm /usr/local/bin/code-server; fi
-        LATEST=$(curl -s https://api.github.com/repos/cdr/code-server/releases/latest) \
-        && X86URL=$(echo $LATEST | jq -r '.assets[].browser_download_url' | grep linux-amd64) \
-        && X86ARTIFACT=$(echo $LATEST  | jq -r '.assets[].name' | grep linux-amd64) \
-        && curl -L -O $X86URL \
-        && tar -zxvf $X86ARTIFACT \
-        && sudo mv $(echo $X86ARTIFACT | sed -r 's/.tar.gz//') /usr/local/bin/code-server-dir \
-        && sudo ln -s /usr/local/bin/code-server-dir/bin/code-server /usr/local/bin/code-server
-    else 
-        echo "skipping because Code Server can't work in CloudShell"
-fi
 #########################
 ## end setup utilities ##
 #########################
