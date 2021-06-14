@@ -21,14 +21,10 @@ The `Extensions for AWS managed shells` script installs and/or updates the follo
 - [eksctl](https://github.com/weaveworks/eksctl) - [Apache Software license v2 - [link](https://github.com/weaveworks/eksctl/blob/master/LICENSE)]
 - [kubecfg](https://github.com/ksonnet/kubecfg) - [Apache Software license v2 - [link](https://github.com/bitnami/kubecfg/blob/master/LICENSE)]
 - [kubectx/kubens](https://github.com/ahmetb/kubectx/) - [Apache Software license v2 - [link](https://github.com/ahmetb/kubectx/blob/master/LICENSE)]
-- [ksonnet](https://github.com/ksonnet/ksonnet) - [Apache Software license v2 - [link](https://github.com/ksonnet/ksonnet/blob/master/LICENSE)]
 - [k9s](https://k9ss.io/) - [Apache Software license v2 - [link](https://k9ss.io/)]
 - [docker](https://docs.docker.com/engine/) - [Apache Software license v2 - [link](https://github.com/docker/engine/blob/master/LICENSE)]
 - [docker-compose](https://docs.docker.com/compose/) - [Apache Software license v2 - [link](https://github.com/docker/compose/blob/master/LICENSE)]
 - [bat](https://github.com/sharkdp/bat/) - [Apache Software license v2 - [link](https://github.com/sharkdp/bat/blob/master/LICENSE-APACHE)]
-- [kind](https://kind.sigs.k8s.io/) - [Apache Software license v2 - [link](https://github.com/kubernetes-sigs/kind/blob/master/LICENSE)] [Only available in Cloud9]
-- [Octant](https://github.com/vmware-tanzu/octant) - [Apache Software license v2 - [link](https://github.com/vmware-tanzu/octant/blob/master/LICENSE)] [Only available in Cloud9]
-- [VS Code server](https://github.com/cdr/code-server) - [MIT license - [link](https://github.com/cdr/code-server/blob/v3.8.0/LICENSE.txt)] [Only available in Cloud9]
 - additional utils: unzip, jq, vi, wget, less, git, yarn, which and httpd-tools (and more, just in case) 
 
 The script also installs and/or updates the following pre-requisites: 
